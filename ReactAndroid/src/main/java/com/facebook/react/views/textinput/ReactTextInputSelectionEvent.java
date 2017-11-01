@@ -30,7 +30,7 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
       int selectionStart,
       int selectionEnd,
       float cursorPositionX,
-      float cursorPositionY)) {
+      float cursorPositionY) {
     super(viewId);
     mSelectionStart = selectionStart;
     mSelectionEnd = selectionEnd;
