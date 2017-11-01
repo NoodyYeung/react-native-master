@@ -24,6 +24,9 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 
   private int mSelectionStart;
   private int mSelectionEnd;
+  private float mCursorPositionX;
+  private float mCursorPositionY;
+  
 
   public ReactTextInputSelectionEvent(
       int viewId,
