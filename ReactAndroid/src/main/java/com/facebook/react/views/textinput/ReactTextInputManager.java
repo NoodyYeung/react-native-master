@@ -814,12 +814,21 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
       // Android will call us back for both the SELECTION_START span and SELECTION_END span in text
       // To prevent double calling back into js we cache the result of the previous call and only
       // forward it on if we have new values
+      Layout layout = mReactEditText.getLayout();
+      int line = layout.getLineForOffset(start);
+      int baseline = layout.getLineBaseline(line);
+      int ascent = layout.getLineAscent(line);
+      float cursorPositionX = layout.getPrimaryHorizontal(start);
+      float cursorPositionY = baseline + ascent;
+
       if (mPreviousSelectionStart != start || mPreviousSelectionEnd != end) {
         mEventDispatcher.dispatchEvent(
             new ReactTextInputSelectionEvent(
                 mReactEditText.getId(),
                 start,
-                end
+                end,
+                PixelUtil.toDIPFromPixel(cursorPositionX),
+                PixelUtil.toDIPFromPixel(cursorPositionY)
             ));
 
         mPreviousSelectionStart = start;

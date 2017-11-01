@@ -28,10 +28,14 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
   public ReactTextInputSelectionEvent(
       int viewId,
       int selectionStart,
-      int selectionEnd) {
+      int selectionEnd,
+      float cursorPositionX,
+      float cursorPositionY)) {
     super(viewId);
     mSelectionStart = selectionStart;
     mSelectionEnd = selectionEnd;
+    mCursorPositionX = cursorPositionX;
+    mCursorPositionY = cursorPositionY;
   }
 
   @Override
@@ -51,6 +55,8 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
     selectionData.putInt("end", mSelectionEnd);
     selectionData.putInt("start", mSelectionStart);
 
+    selectionData.putDouble("cursorPositionX", mCursorPositionX);
+    selectionData.putDouble("cursorPositionY", mCursorPositionY);
     eventData.putMap("selection", selectionData);
     return eventData;
   }
